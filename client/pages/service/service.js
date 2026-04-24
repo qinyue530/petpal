@@ -11,67 +11,40 @@ Page({
     ],
     selectedCategory: 1,
     filteredServices: [],
-    merchants: [
-      {
-        id: 1,
-        name: "宠物乐园",
-        rating: 4.8,
-        address: "北京市朝阳区建国路88号",
-        distance: 500,
-        image: "/images/post-dog-park.jpg"
-      },
-      {
-        id: 2,
-        name: "萌宠之家",
-        rating: 4.6,
-        address: "北京市海淀区中关村大街1号",
-        distance: 800,
-        image: "/images/post-cat-daily.jpg"
-      },
-      {
-        id: 3,
-        name: "宠物医院",
-        rating: 4.9,
-        address: "北京市西城区西单大街120号",
-        distance: 1200,
-        image: "/images/service-medical.jpg"
-      }
-    ],
-    services: [
-      {
-        id: 1,
-        name: "宠物美容",
-        price: 88,
-        description: "专业宠物美容服务，包括洗澡、剪毛、造型等",
-        image: "/images/service-grooming.jpg"
-      },
-      {
-        id: 2,
-        name: "宠物寄养",
-        price: 120,
-        description: "24小时专业宠物寄养服务，提供舒适的居住环境",
-        image: "/images/service-boarding.jpg"
-      },
-      {
-        id: 3,
-        name: "宠物医疗",
-        price: 150,
-        description: "专业宠物医疗服务，包括体检、疫苗接种、疾病治疗等",
-        image: "/images/service-medical.jpg"
-      },
-      {
-        id: 4,
-        name: "宠物训练",
-        price: 200,
-        description: "专业宠物训练服务，包括基础训练、行为纠正等",
-        image: "/images/service-training.jpg"
-      }
-    ]
+    merchants: [],
+    services: [],
+    loading: true
   },
   
   onLoad: function() {
     console.log('服务页面加载');
-    this.setData({ filteredServices: this.data.services });
+    this.loadData();
+  },
+  
+  loadData: function() {
+    wx.showLoading({ title: '加载中...' });
+    const api = require('../../utils/api');
+    
+    // 并行请求服务和商家数据
+    Promise.all([
+      api.getServices(),
+      api.request({ url: '/merchants' })
+    ])
+    .then(([services, merchants]) => {
+      this.setData({
+        services: services || [],
+        merchants: merchants || [],
+        filteredServices: services || [],
+        loading: false
+      });
+      wx.hideLoading();
+    })
+    .catch(err => {
+      console.error('加载数据失败:', err);
+      this.setData({ loading: false });
+      wx.hideLoading();
+      wx.showToast({ title: '加载失败', icon: 'none' });
+    });
   },
   
   onShow: function() {

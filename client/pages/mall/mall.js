@@ -10,22 +10,43 @@ Page({
       { id: 6, name: "宠物医疗" }
     ],
     selectedCategory: 1,
-    products: [
-      { id: 1, name: "宠物狗粮", price: 99, sales: 2341, image: "/images/product-dogfood.jpg" },
-      { id: 2, name: "宠物玩具", price: 49, sales: 1856, image: "/images/product-toy.jpg" },
-      { id: 3, name: "宠物零食", price: 39, sales: 3567, image: "/images/product-snack.jpg" },
-      { id: 4, name: "宠物用品", price: 69, sales: 982, image: "/images/product-supplies.jpg" },
-      { id: 5, name: "宠物猫砂", price: 29, sales: 4123, image: "/images/product-catlitter.jpg" },
-      { id: 6, name: "宠物牵引绳", price: 59, sales: 1567, image: "/images/product-leash.jpg" }
-    ],
+    products: [],
     filteredProducts: [],
     searchKeyword: '',
-    cartCount: 0
+    cartCount: 0,
+    loading: true
   },
 
   onLoad: function() {
     console.log('商城页面加载');
-    this.setData({ filteredProducts: this.data.products });
+    this.loadData();
+  },
+  
+  loadData: function() {
+    wx.showLoading({ title: '加载中...' });
+    const api = require('../../utils/api');
+    
+    api.getProducts()
+      .then(products => {
+        // 处理商品数据，添加sales字段（后端未返回）
+        const processedProducts = (products || []).map(product => ({
+          ...product,
+          sales: Math.floor(Math.random() * 1000) // 随机生成销量
+        }));
+        
+        this.setData({
+          products: processedProducts,
+          filteredProducts: processedProducts,
+          loading: false
+        });
+        wx.hideLoading();
+      })
+      .catch(err => {
+        console.error('加载商品失败:', err);
+        this.setData({ loading: false });
+        wx.hideLoading();
+        wx.showToast({ title: '加载失败', icon: 'none' });
+      });
   },
 
   onShow: function() {

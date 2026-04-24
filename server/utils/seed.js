@@ -17,7 +17,7 @@ require('../models/Favorite');
 require('../models/Vaccine');
 
 async function seed() {
-  const { Category, Merchant, Service, Product, Topic } = sequelize.models;
+  const { Category, User, Merchant, Service, Product, Topic, Post } = sequelize.models;
 
   // 服务分类
   const serviceCategories = [
@@ -68,14 +68,42 @@ async function seed() {
     { id: 4, name: '宠物健康', description: '讨论宠物健康知识', sort_order: 3 },
   ];
 
-  await sequelize.sync({ alter: true });
+  // 社区帖子
+  // 用户数据
+  const users = [
+    { id: 1, openid: 'test_openid', username: '宠物爱好者', avatar: '/images/avatar-user1.jpg' },
+  ];
+
+  // 社区帖子
+  const posts = [
+    { id: 1, user_id: 1, topic_id: 2, content: '今天带狗狗去公园玩，它玩得很开心！分享一下它的照片。', images: JSON.stringify(['/images/post-dog-park.jpg']), likes: 23, comments: 5 },
+    { id: 2, user_id: 1, topic_id: 3, content: '我家猫咪最近学会了新技能，太聪明了！分享一下训练过程。', images: JSON.stringify(['/images/post-cat-daily.jpg']), likes: 45, comments: 12 },
+    { id: 3, user_id: 1, topic_id: 4, content: '最近天气变化较大，宠物容易生病，大家要注意给宠物保暖，定期检查健康状况。', images: JSON.stringify(['/images/post-pet-health.jpg']), likes: 67, comments: 18 },
+  ];
+
+  // 修正商品图片路径
+  const updatedProducts = products.map(product => ({
+    ...product,
+    image: `/images/product-${product.name.toLowerCase().replace(/\s+/g, '-')}.jpg`
+  }));
+
+  // 修正服务图片路径
+  const updatedServices = services.map(service => ({
+    ...service,
+    image: `/images/service-${service.name.toLowerCase().replace(/\s+/g, '-')}.jpg`
+  }));
+
+  // 使用force: true强制重新创建表结构，以更新字段名
+  await sequelize.sync({ force: true });
 
   await Category.bulkCreate(serviceCategories, { updateOnDuplicate: ['name', 'type', 'sort_order'] });
   await Category.bulkCreate(productCategories, { updateOnDuplicate: ['name', 'type', 'sort_order'] });
+  await User.bulkCreate(users, { updateOnDuplicate: ['openid', 'username', 'avatar'] });
   await Merchant.bulkCreate(merchants, { updateOnDuplicate: ['name', 'description', 'address', 'phone', 'rating'] });
-  await Service.bulkCreate(services, { updateOnDuplicate: ['merchant_id', 'category_id', 'name', 'description', 'price', 'unit', 'duration', 'status'] });
-  await Product.bulkCreate(products, { updateOnDuplicate: ['category_id', 'name', 'description', 'price', 'stock', 'image', 'status'] });
+  await Service.bulkCreate(updatedServices, { updateOnDuplicate: ['merchant_id', 'category_id', 'name', 'description', 'price', 'unit', 'duration', 'status', 'image'] });
+  await Product.bulkCreate(updatedProducts, { updateOnDuplicate: ['category_id', 'name', 'description', 'price', 'stock', 'image', 'status'] });
   await Topic.bulkCreate(topics, { updateOnDuplicate: ['name', 'description', 'sort_order'] });
+  await Post.bulkCreate(posts, { updateOnDuplicate: ['user_id', 'topic_id', 'content', 'images', 'likes', 'comments'] });
 
   console.log('Seed data inserted successfully!');
   console.log(`  - ${serviceCategories.length} service categories`);
@@ -84,6 +112,7 @@ async function seed() {
   console.log(`  - ${services.length} services`);
   console.log(`  - ${products.length} products`);
   console.log(`  - ${topics.length} topics`);
+  console.log(`  - ${posts.length} posts`);
 
   process.exit(0);
 }

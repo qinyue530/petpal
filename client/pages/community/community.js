@@ -27,53 +27,45 @@ Page({
 
   // 加载帖子数据
   loadPosts: function() {
-    const posts = wx.getStorageSync('posts') || [];
-    if (posts.length === 0) {
-      // 添加默认帖子
-      const defaultPosts = [
-        {
-          id: 1,
-          username: "宠物爱好者",
-          avatar: "/images/avatar-user1.jpg",
-          time: "2小时前",
-          content: "我家狗狗今天学会了新技能，太聪明了！分享一下它的训练过程...",
-          image: "/images/post-dog-park.jpg",
-          likes: 23,
-          comments: 5,
-          topic: 3
-        },
-        {
-          id: 2,
-          username: "猫咪控",
-          avatar: "/images/avatar-user2.jpg",
-          time: "4小时前",
-          content: "分享一下我家猫咪的日常，是不是很可爱？它最近特别喜欢玩这个玩具...",
-          image: "/images/post-cat-daily.jpg",
-          likes: 45,
-          comments: 12,
-          topic: 2
-        },
-        {
-          id: 3,
-          username: "宠物医生",
-          avatar: "/images/avatar-vet.jpg",
-          time: "6小时前",
-          content: "最近天气变化较大，宠物容易生病，大家要注意给宠物保暖，定期检查健康状况...",
-          image: "/images/post-pet-health.jpg",
-          likes: 67,
-          comments: 18,
-          topic: 4
-        }
-      ];
-      wx.setStorageSync('posts', defaultPosts);
-      this.setData({
-        posts: defaultPosts
+    wx.showLoading({ title: '加载中...' });
+    const api = require('../../utils/api');
+    
+    api.getPosts()
+      .then(posts => {
+        // 处理帖子数据，适配前端格式
+        const processedPosts = (posts || []).map(post => {
+          // 处理用户信息
+          const user = post.user || {};
+          // 处理图片（取第一张图片）
+          let image = '';
+          try {
+            const images = JSON.parse(post.images || '[]');
+            image = images[0] || '';
+          } catch (e) {
+            image = '';
+          }
+          
+          return {
+            id: post.id,
+            topic: post.topic_id || 1, // 使用topic_id作为topic
+            username: user.username || '未知用户',
+            avatar: user.avatar || '/images/avatar-default.png',
+            content: post.content || '',
+            image: image,
+            likes: post.likes || 0,
+            comments: post.comments || 0,
+            time: '刚刚' // 简化处理，使用固定时间
+          };
+        });
+        
+        this.setData({ posts: processedPosts });
+        wx.hideLoading();
+      })
+      .catch(err => {
+        console.error('加载帖子失败:', err);
+        wx.hideLoading();
+        wx.showToast({ title: '加载失败', icon: 'none' });
       });
-    } else {
-      this.setData({
-        posts: posts
-      });
-    }
   },
 
   // 发布动态
@@ -93,7 +85,7 @@ Page({
 
   // 按话题过滤帖子
   filterPosts: function() {
-    var allPosts = wx.getStorageSync('posts') || [];
+    var allPosts = this.data.posts;
     var topicId = this.data.selectedTopic;
     var filtered;
     if (topicId === 1) {

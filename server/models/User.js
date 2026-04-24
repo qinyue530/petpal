@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-module.exports = sequelize.define('User', {
+const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -37,3 +37,13 @@ module.exports = sequelize.define('User', {
   tableName: 'users',
   paranoid: false
 });
+
+// 定义关联关系
+User.associate = function(models) {
+  User.hasMany(models.Post, {
+    foreignKey: 'user_id',
+    as: 'posts'
+  });
+};
+
+module.exports = User;

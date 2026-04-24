@@ -2,32 +2,77 @@
 Page({
   data: {
     searchKeyword: '',
-    services: [
-      { id: 1, name: "宠物美容", price: 88, image: "/images/service-grooming.jpg" },
-      { id: 2, name: "宠物寄养", price: 120, image: "/images/service-boarding.jpg" },
-      { id: 3, name: "宠物医疗", price: 150, image: "/images/service-medical.jpg" },
-      { id: 4, name: "宠物训练", price: 200, image: "/images/service-training.jpg" }
-    ],
-    products: [
-      { id: 1, name: "宠物狗粮", price: 99, sales: 2341, image: "/images/product-dogfood.jpg" },
-      { id: 2, name: "宠物玩具", price: 49, sales: 1856, image: "/images/product-toy.jpg" },
-      { id: 3, name: "宠物零食", price: 39, sales: 3567, image: "/images/product-snack.jpg" },
-      { id: 4, name: "宠物用品", price: 69, sales: 982, image: "/images/product-supplies.jpg" }
-    ],
-    communityPosts: [
-      { id: 1, username: "宠物爱好者", avatar: "/images/avatar-user1.jpg", content: "今天带狗狗去公园玩，它玩得很开心！", image: "/images/post-dog-park.jpg", likes: 23, comments: 5, time: "2小时前" },
-      { id: 2, username: "猫咪控", avatar: "/images/avatar-user2.jpg", content: "分享一下我家猫咪的日常，是不是很可爱？", image: "/images/post-cat-daily.jpg", likes: 45, comments: 12, time: "4小时前" }
-    ],
+    services: [],
+    products: [],
+    communityPosts: [],
     filteredServices: [],
     filteredProducts: [],
-    showSearchResult: false
+    showSearchResult: false,
+    loading: true
   },
   
   onLoad: function() {
     console.log('首页加载');
-    this.setData({
-      filteredServices: this.data.services,
-      filteredProducts: this.data.products
+    this.loadData();
+  },
+  
+  loadData: function() {
+    wx.showLoading({ title: '加载中...' });
+    const api = require('../../utils/api');
+    
+    // 并行请求所有数据
+    Promise.all([
+      api.getServices(),
+      api.getProducts(),
+      api.getPosts()
+    ])
+    .then(([services, products, posts]) => {
+      // 处理社区帖子数据，适配前端格式
+      const processedPosts = (posts || []).map(post => {
+        // 处理用户信息
+        const user = post.user || {};
+        // 处理图片（取第一张图片）
+        let image = '';
+        try {
+          const images = JSON.parse(post.images || '[]');
+          image = images[0] || '';
+        } catch (e) {
+          image = '';
+        }
+        
+        return {
+          id: post.id,
+          username: user.username || '未知用户',
+          avatar: user.avatar || '/images/avatar-default.png',
+          content: post.content || '',
+          image: image,
+          likes: post.likes || 0,
+          comments: post.comments || 0,
+          time: '刚刚' // 简化处理，使用固定时间
+        };
+      });
+      
+      // 处理商品数据，添加sales字段（后端未返回）
+      const processedProducts = (products || []).map(product => ({
+        ...product,
+        sales: Math.floor(Math.random() * 1000) // 随机生成销量
+      }));
+      
+      this.setData({
+        services: services || [],
+        products: processedProducts,
+        communityPosts: processedPosts,
+        filteredServices: services || [],
+        filteredProducts: processedProducts,
+        loading: false
+      });
+      wx.hideLoading();
+    })
+    .catch(err => {
+      console.error('加载数据失败:', err);
+      this.setData({ loading: false });
+      wx.hideLoading();
+      wx.showToast({ title: '加载失败', icon: 'none' });
     });
   },
   

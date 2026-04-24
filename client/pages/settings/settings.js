@@ -24,5 +24,28 @@ Page({
   },
   editProfile: function() {
     wx.navigateTo({ url: '../edit-profile/edit-profile' });
+  },
+  testConnection: function() {
+    wx.showLoading({ title: '测试连接中...' });
+    const api = require('../../utils/api');
+    api.request({
+      url: '/test/time'
+    })
+    .then(data => {
+      wx.hideLoading();
+      wx.showModal({
+        title: '连接成功',
+        content: '后端时间：' + new Date(data.currentTime).toLocaleString(),
+        showCancel: false
+      });
+    })
+    .catch(err => {
+      wx.hideLoading();
+      wx.showModal({
+        title: '连接失败',
+        content: '错误信息：' + JSON.stringify(err),
+        showCancel: false
+      });
+    });
   }
 });

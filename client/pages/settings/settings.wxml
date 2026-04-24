@@ -16,4 +16,10 @@
       <text class="arrow">→</text>
     </view>
   </view>
+  <view class="section">
+    <view class="setting-item" bindtap="testConnection">
+      <text class="setting-text">测试后端连接</text>
+      <text class="arrow">→</text>
+    </view>
+  </view>
 </view>

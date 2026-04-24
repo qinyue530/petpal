@@ -38,7 +38,8 @@ App({
       pets: [],
       services: [],
       products: [],
-      communityPosts: []
+      communityPosts: [],
+      apiBaseUrl: 'http://192.168.20.71:3000/api'
     };
   },
   
@@ -68,6 +69,7 @@ App({
     pets: [],
     services: [],
     products: [],
-    communityPosts: []
+    communityPosts: [],
+    apiBaseUrl: 'http://192.168.20.71:3000/api'
   }
 })

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-module.exports = sequelize.define('Post', {
+const Post = sequelize.define('Post', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -25,7 +25,7 @@ module.exports = sequelize.define('Post', {
     type: DataTypes.INTEGER,
     defaultValue: 0
   },
-  comments_count: {
+  comments: {
     type: DataTypes.INTEGER,
     defaultValue: 0
   }
@@ -33,3 +33,13 @@ module.exports = sequelize.define('Post', {
   tableName: 'posts',
   paranoid: false
 });
+
+// 定义关联关系
+Post.associate = function(models) {
+  Post.belongsTo(models.User, {
+    foreignKey: 'user_id',
+    as: 'user'
+  });
+};
+
+module.exports = Post;

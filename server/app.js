@@ -5,20 +5,31 @@ const fs = require('fs');
 const config = require('./config');
 
 // 加载所有模型（必须在 routes 之前）
-require('./models/Category');
-require('./models/User');
-require('./models/Pet');
-require('./models/Merchant');
-require('./models/Service');
-require('./models/Product');
-require('./models/Order');
-require('./models/OrderItem');
-require('./models/Booking');
-require('./models/Post');
-require('./models/Topic');
-require('./models/Comment');
-require('./models/Favorite');
-require('./models/Vaccine');
+const Category = require('./models/Category');
+const User = require('./models/User');
+const Pet = require('./models/Pet');
+const Merchant = require('./models/Merchant');
+const Service = require('./models/Service');
+const Product = require('./models/Product');
+const Order = require('./models/Order');
+const OrderItem = require('./models/OrderItem');
+const Booking = require('./models/Booking');
+const Post = require('./models/Post');
+const Topic = require('./models/Topic');
+const Comment = require('./models/Comment');
+const Favorite = require('./models/Favorite');
+const Vaccine = require('./models/Vaccine');
+
+// 初始化模型关联关系
+const sequelize = require('./config/database');
+const models = sequelize.models;
+
+// 建立关联关系
+Object.keys(models).forEach(modelName => {
+  if (models[modelName].associate) {
+    models[modelName].associate(models);
+  }
+});
 
 const routes = require('./routes');
 const errorHandler = require('./middleware/errorHandler');

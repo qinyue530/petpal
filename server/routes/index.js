@@ -20,6 +20,11 @@ const auth = require('../middleware/auth');
 router.post('/auth/login', authController.login);
 router.post('/auth/phoneLogin', authController.phoneLogin);
 router.get('/services', serviceController.list);
+// 测试接口
+router.get('/test/time', (req, res) => {
+  console.log('测试接口被调用，当前时间:', new Date().toISOString());
+  res.json({ code: 200, message: 'success', data: { currentTime: new Date().toISOString() } });
+});
 router.get('/services/:id', serviceController.getDetail);
 router.get('/merchants', serviceController.getMerchants);
 router.get('/products', productController.list);
