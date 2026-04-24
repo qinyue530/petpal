@@ -1,0 +1,138 @@
+/* 评论页面样式 */
+.page-header {
+  padding: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--border-color);
+  background-color: var(--white);
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.post-info {
+  padding: 20rpx;
+  background-color: var(--white);
+  margin-bottom: 16rpx;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.post-username {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.post-time {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.post-content {
+  font-size: 28rpx;
+  color: var(--text-color);
+  line-height: 1.4;
+  margin-bottom: 16rpx;
+}
+
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.post-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+}
+
+.comment-list {
+  padding: 20rpx;
+  background-color: var(--white);
+  margin-bottom: 100rpx;
+}
+
+.comment-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 16rpx;
+}
+
+.comment-item {
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.comment-username {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.comment-time {
+  font-size: 20rpx;
+  color: var(--text-light);
+}
+
+.comment-content {
+  font-size: 24rpx;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.comment-input-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  background-color: var(--white);
+  border-top: 1rpx solid var(--border-color);
+  gap: 12rpx;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 12rpx 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  background-color: #f5f5f5;
+}
+
+.comment-btn {
+  padding: 12rpx 24rpx;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}

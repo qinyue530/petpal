@@ -1,0 +1,38 @@
+<!-- 购物车页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">购物车</text>
+  </view>
+  
+  <!-- 购物车为空 -->
+  <view class="empty-cart" wx:if="{{cart.length === 0}}">
+    <text class="empty-text">购物车为空</text>
+    <button class="go-shopping-btn" bindtap="goShopping">去购物</button>
+  </view>
+  
+  <!-- 购物车列表 -->
+  <view class="cart-list" wx:else>
+    <view class="cart-item" wx:for="{{cart}}" wx:key="index">
+      <image src="{{item.image || '/images/product-dogfood.jpg'}}" mode="aspectFill" class="cart-item-image" />
+      <view class="cart-item-info">
+        <text class="cart-item-name">{{item.name}}</text>
+        <text class="cart-item-price">¥{{item.price}}</text>
+        <view class="cart-item-quantity">
+          <button class="quantity-btn" bindtap="decreaseQuantity" data-index="{{index}}">-</button>
+          <text class="quantity-text">{{item.quantity}}</text>
+          <button class="quantity-btn" bindtap="increaseQuantity" data-index="{{index}}">+</button>
+        </view>
+      </view>
+      <button class="delete-btn" bindtap="deleteItem" data-index="{{index}}">删除</button>
+    </view>
+    
+    <!-- 结算区域 -->
+    <view class="checkout-section">
+      <view class="total-price">
+        <text class="total-label">合计：</text>
+        <text class="total-amount">¥{{totalPrice}}</text>
+      </view>
+      <button class="checkout-btn" bindtap="checkout">结算</button>
+    </view>
+  </view>
+</view>

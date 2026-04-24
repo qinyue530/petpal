@@ -1,0 +1,110 @@
+/* 服务预约页面样式 */
+.page-header {
+  padding: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--border-color);
+  background-color: var(--white);
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.booking-container {
+  padding: 20rpx;
+}
+
+.service-info {
+  display: flex;
+  background-color: var(--white);
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+}
+
+.service-image {
+  width: 160rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.service-details {
+  flex: 1;
+}
+
+.service-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+}
+
+.service-price {
+  font-size: 28rpx;
+  color: #f44336;
+  margin-bottom: 8rpx;
+}
+
+.service-description {
+  font-size: 24rpx;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+.form-item {
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 12rpx;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+
+.form-textarea {
+  width: 100%;
+  height: 120rpx;
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 4rpx;
+  font-size: 28rpx;
+  resize: none;
+}
+
+.form-picker {
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 4rpx;
+  background-color: var(--white);
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 20rpx;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 32rpx;
+}

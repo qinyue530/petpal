@@ -1,0 +1,27 @@
+<!-- 编辑个人资料 -->
+<view class="container">
+  <!-- 头像 -->
+  <view class="avatar-section">
+    <view class="avatar-wrapper" bindtap="chooseAvatar">
+      <image src="{{avatar || '/images/user-avatar.png'}}" mode="aspectFill" class="avatar-img" />
+      <view class="avatar-mask">
+        <text class="avatar-tip">更换头像</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户名 -->
+  <view class="form-item">
+    <text class="form-label">用户名</text>
+    <input type="text" placeholder="请输入用户名" class="form-input" bindinput="inputUsername" value="{{username}}" maxlength="20" />
+  </view>
+
+  <!-- 个人简介 -->
+  <view class="form-item">
+    <text class="form-label">个人简介</text>
+    <textarea placeholder="介绍一下自己吧" class="form-textarea" bindinput="inputDesc" value="{{desc}}" maxlength="100" />
+  </view>
+
+  <!-- 保存按钮 -->
+  <button class="save-btn" bindtap="save">保存</button>
+</view>

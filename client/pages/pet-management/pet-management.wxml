@@ -1,0 +1,29 @@
+<!-- 宠物管理页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">宠物管理</text>
+  </view>
+  
+  <!-- 宠物列表 -->
+  <view class="pet-list">
+    <view class="pet-item" wx:for="{{pets}}" wx:key="index">
+      <image src="{{item.image || '/images/user-avatar.png'}}" mode="aspectFill" class="pet-image" />
+      <view class="pet-info">
+        <text class="pet-name">{{item.name}}</text>
+        <text class="pet-type">{{item.type}}</text>
+        <text class="pet-breed">{{item.breed}}</text>
+        <text class="pet-age">{{item.age}}岁</text>
+      </view>
+      <view class="pet-actions">
+        <button class="action-btn edit-btn" bindtap="editPet" data-index="{{index}}">编辑</button>
+        <button class="action-btn delete-btn" bindtap="deletePet" data-index="{{index}}">删除</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 添加宠物按钮 -->
+  <view class="add-pet-btn" bindtap="addPet">
+    <image src="/images/add-icon.png" mode="aspectFill" class="add-icon" />
+    <text class="add-text">添加宠物</text>
+  </view>
+</view>

@@ -1,0 +1,214 @@
+/* 社区页面样式 - 温馨可爱风 */
+
+/* ===== 发布按钮 ===== */
+.publish-btn {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-card);
+  border: 2rpx solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.publish-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-pink), var(--accent-lavender));
+}
+
+.publish-icon-box {
+  width: 72rpx;
+  height: 72rpx;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-pink));
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 16rpx rgba(255, 138, 101, 0.3);
+}
+
+.publish-icon-text {
+  font-size: 32rpx;
+}
+
+.publish-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.publish-text {
+  font-size: 28rpx;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 4rpx;
+}
+
+.publish-hint {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.publish-arrow {
+  font-size: 36rpx;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+/* ===== 帖子列表 ===== */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.post-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 28rpx;
+  box-shadow: var(--shadow-card);
+  border: 2rpx solid var(--border-light);
+}
+
+/* ===== 帖子头部 ===== */
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.post-avatar-wrap {
+  position: relative;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.post-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -2rpx;
+  right: -2rpx;
+  width: 24rpx;
+  height: 24rpx;
+  background: var(--accent-green);
+  border-radius: 50%;
+  border: 4rpx solid var(--bg-card);
+}
+
+.post-avatar {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+}
+
+.post-user {
+  flex: 1;
+}
+
+.post-username {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.post-time {
+  font-size: 22rpx;
+  color: var(--text-light);
+  display: block;
+}
+
+.post-follow-btn {
+  padding: 8rpx 20rpx;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-pink));
+  border-radius: var(--radius-round);
+  font-size: 22rpx;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4rpx 12rpx rgba(255, 138, 101, 0.2);
+}
+
+/* ===== 帖子内容 ===== */
+.post-content {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+/* ===== 帖子图片 ===== */
+.post-image-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.post-image {
+  width: 100%;
+  height: 340rpx;
+  border-radius: var(--radius-lg);
+}
+
+/* ===== 帖子操作 ===== */
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20rpx;
+  border-top: 2rpx dashed var(--border-light);
+}
+
+.post-action {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 8rpx 20rpx;
+  border-radius: var(--radius-round);
+  transition: all 0.2s ease;
+}
+
+.post-action:active {
+  background: var(--bg-warm);
+  transform: scale(0.95);
+}
+
+.action-icon {
+  font-size: 30rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* 点赞激活态 */
+.action-like.liked .action-text {
+  color: var(--accent-pink);
+  font-weight: 600;
+}
+
+.action-like.liked {
+  background: rgba(244, 143, 177, 0.08);
+}
+
+/* 评论按钮 */
+.action-comment:active {
+  background: rgba(129, 212, 250, 0.08);
+}
+
+/* 分享按钮 */
+.action-share:active {
+  background: rgba(206, 147, 216, 0.08);
+}

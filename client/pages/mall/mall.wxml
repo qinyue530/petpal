@@ -1,0 +1,54 @@
+<!-- 商城页面 -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-inner">
+      <text class="search-icon">🔍</text>
+      <input type="text" placeholder="搜索宠物商品..." class="search-input" bindinput="inputSearch" value="{{searchKeyword}}" confirm-type="search" bindconfirm="search" />
+      <view class="search-btn" bindtap="search">搜索</view>
+    </view>
+  </view>
+
+  <!-- 商品分类 -->
+  <view class="category-section">
+    <scroll-view scroll-x="true" class="category-scroll">
+      <view class="category-item {{selectedCategory === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="index" bindtap="selectCategory" data-index="{{index}}">
+        <text class="category-text">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="product-section">
+    <view class="section-header">
+      <text class="section-title">好物推荐 ({{filteredProducts.length}})</text>
+    </view>
+    <view class="product-grid">
+      <view class="product-card" wx:for="{{filteredProducts}}" wx:key="index" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="product-image-wrap">
+          <image src="{{item.image}}" mode="aspectFill" class="product-image" />
+          <view class="product-badge" wx:if="{{item.sales > 500}}">爆款</view>
+        </view>
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <view class="product-bottom">
+            <view class="product-price-area">
+              <text class="product-price">¥{{item.price}}</text>
+            </view>
+            <text class="product-sales">已售{{item.sales}}</text>
+          </view>
+          <button class="add-to-cart" bindtap="addToCart" catchtap="addToCart" data-id="{{item.id}}">
+            <text class="cart-btn-icon">🛒</text>
+            <text>加入购物车</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车悬浮按钮 -->
+  <view class="cart-float-btn" bindtap="goToCart">
+    <text class="cart-float-icon">🛒</text>
+    <view class="cart-float-count" wx:if="{{cartCount > 0}}">{{cartCount}}</view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+/* 宠物管理页面样式 */
+.page-header {
+  padding: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--border-color);
+  background-color: var(--white);
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.pet-list {
+  padding: 20rpx;
+}
+
+.pet-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+}
+
+.pet-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.pet-info {
+  flex: 1;
+}
+
+.pet-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+}
+
+.pet-type,
+.pet-breed,
+.pet-age {
+  font-size: 24rpx;
+  color: var(--text-light);
+  margin-bottom: 4rpx;
+}
+
+.pet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.action-btn {
+  padding: 8rpx 16rpx;
+  font-size: 24rpx;
+  border-radius: 4rpx;
+  border: none;
+}
+
+.edit-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: var(--white);
+}
+
+.add-pet-btn {
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 16rpx 24rpx;
+  border-radius: 50rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
+}
+
+.add-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.add-text {
+  font-size: 28rpx;
+  font-weight: 600;
+}

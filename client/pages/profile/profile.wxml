@@ -1,0 +1,84 @@
+<!-- 个人中心页面 -->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-section">
+    <view class="user-avatar" bindtap="login">
+      <image src="{{userInfo.avatar || '/images/user-avatar.png'}}" mode="aspectFill" class="avatar-img" />
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{userInfo.username || '未登录'}}</text>
+      <text class="user-desc">{{userInfo.desc || '点击登录'}}</text>
+    </view>
+    <view class="login-btn" bindtap="login">
+      <text class="login-text">{{userInfo.username ? '设置' : '登录'}}</text>
+    </view>
+  </view>
+  
+  <!-- 我的宠物 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">我的宠物</text>
+      <text class="section-more" bindtap="managePets">管理宠物</text>
+    </view>
+    <view class="pet-list">
+      <view class="pet-item" wx:for="{{pets}}" wx:key="index" bindtap="editPet" data-index="{{index}}">
+        <image src="{{item.image}}" mode="aspectFill" class="pet-image" />
+        <text class="pet-name">{{item.name}}</text>
+        <text class="pet-type">{{item.type}}</text>
+      </view>
+      <view class="pet-add" bindtap="addPet">
+        <view class="add-icon-box">
+          <text class="add-icon-text">+</text>
+        </view>
+        <text class="add-text">添加宠物</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 我的服务 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">我的服务</text>
+    </view>
+    <view class="service-list">
+      <view class="service-item" bindtap="myOrders">
+        <text class="service-text">我的订单</text>
+        <text class="arrow-text">→</text>
+      </view>
+      <view class="service-item" bindtap="myAppointments">
+        <text class="service-text">我的预约</text>
+        <text class="arrow-text">→</text>
+      </view>
+      <view class="service-item" bindtap="myFavorites">
+        <text class="service-text">我的收藏</text>
+        <text class="arrow-text">→</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 系统设置 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">系统设置</text>
+    </view>
+    <view class="setting-list">
+      <view class="setting-item" bindtap="aboutUs">
+        <text class="setting-text">关于我们</text>
+        <text class="arrow-text">→</text>
+      </view>
+      <view class="setting-item" bindtap="feedback">
+        <text class="setting-text">意见反馈</text>
+        <text class="arrow-text">→</text>
+      </view>
+      <view class="setting-item" bindtap="settings">
+        <text class="setting-text">设置</text>
+        <text class="arrow-text">→</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 退出登录 -->
+  <view class="logout-btn" bindtap="logout" wx:if="{{userInfo.username}}">
+    <text class="logout-text">退出登录</text>
+  </view>
+</view>

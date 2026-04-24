@@ -1,0 +1,36 @@
+<!-- 评论页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">评论</text>
+  </view>
+  
+  <!-- 帖子信息 -->
+  <view class="post-info">
+    <view class="post-header">
+      <text class="post-username">{{post.username}}</text>
+      <text class="post-time">{{post.time}}</text>
+    </view>
+    <text class="post-content">{{post.content}}</text>
+    <view class="post-images" wx:if="{{post.images && post.images.length > 0}}">
+      <image src="{{item}}" mode="aspectFill" class="post-image" wx:for="{{post.images}}" wx:key="index" />
+    </view>
+  </view>
+  
+  <!-- 评论列表 -->
+  <view class="comment-list">
+    <text class="comment-title">评论 ({{comments.length}})</text>
+    <view class="comment-item" wx:for="{{comments}}" wx:key="index">
+      <view class="comment-header">
+        <text class="comment-username">{{item.username}}</text>
+        <text class="comment-time">{{item.time}}</text>
+      </view>
+      <text class="comment-content">{{item.content}}</text>
+    </view>
+  </view>
+  
+  <!-- 评论输入 -->
+  <view class="comment-input-section">
+    <input type="text" placeholder="写下你的评论..." class="comment-input" bindinput="inputComment" />
+    <button class="comment-btn" bindtap="submitComment">发送</button>
+  </view>
+</view>

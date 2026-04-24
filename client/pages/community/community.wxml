@@ -1,0 +1,66 @@
+<!-- 社区页面 -->
+<view class="container">
+  <!-- 发布按钮 -->
+  <view class="publish-btn" bindtap="publishPost">
+    <view class="publish-icon-box">
+      <text class="publish-icon-text">✏️</text>
+    </view>
+    <view class="publish-content">
+      <text class="publish-text">分享你和毛孩子的日常~</text>
+      <text class="publish-hint">点击发布新动态</text>
+    </view>
+    <view class="publish-arrow">›</view>
+  </view>
+
+  <!-- 话题分类 -->
+  <view class="topic-section">
+    <scroll-view scroll-x="true" class="topic-scroll">
+      <view class="topic-item {{selectedTopic === item.id ? 'active' : ''}}" wx:for="{{topics}}" wx:key="index" bindtap="selectTopic" data-index="{{index}}">
+        <text class="topic-text">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 社区动态 -->
+  <view class="post-list">
+    <view class="post-item" wx:for="{{posts}}" wx:key="index">
+      <!-- 帖子头部 -->
+      <view class="post-header">
+        <view class="post-avatar-wrap">
+          <image src="{{item.avatar}}" mode="aspectFill" class="post-avatar" />
+        </view>
+        <view class="post-user">
+          <text class="post-username">{{item.username}}</text>
+          <text class="post-time">{{item.time}}</text>
+        </view>
+        <view class="post-follow-btn" wx:if="{{!item.isFollowed}}" bindtap="followUser" data-index="{{index}}">
+          <text>+ 关注</text>
+        </view>
+      </view>
+
+      <!-- 帖子内容 -->
+      <text class="post-content">{{item.content}}</text>
+
+      <!-- 帖子图片 -->
+      <view class="post-image-wrap" wx:if="{{item.image}}">
+        <image src="{{item.image}}" mode="aspectFill" class="post-image" />
+      </view>
+
+      <!-- 帖子操作 -->
+      <view class="post-actions">
+        <view class="post-action action-like {{item.isLiked ? 'liked' : ''}}" bindtap="likePost" data-index="{{index}}">
+          <text class="action-icon">{{item.isLiked ? '❤️' : '🤍'}}</text>
+          <text class="action-text">{{item.likes}}</text>
+        </view>
+        <view class="post-action action-comment" bindtap="commentPost" data-index="{{index}}">
+          <text class="action-icon">💬</text>
+          <text class="action-text">{{item.comments}}</text>
+        </view>
+        <view class="post-action action-share" bindtap="sharePost" data-index="{{index}}">
+          <text class="action-icon">🔗</text>
+          <text class="action-text">分享</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

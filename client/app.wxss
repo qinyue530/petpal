@@ -1,0 +1,291 @@
+/* 全局样式 - 温馨可爱风 */
+page {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #4A3728;
+  /* 温暖奶油色背景 */
+  background: linear-gradient(180deg, #FFF8F0 0%, #FFF3E8 30%, #FFEEF5 100%);
+  background-attachment: fixed;
+
+  /* ===== 温馨可爱风 CSS 变量 ===== */
+  --primary-color: #FF8A65;
+  --primary-light: #FFAB91;
+  --primary-dark: #E64A19;
+  --secondary-color: #FFB74D;
+  --accent-green: #81C784;
+  --accent-pink: #F48FB1;
+  --accent-lavender: #CE93D8;
+  --accent-sky: #81D4FA;
+  --accent-mint: #A5D6A7;
+
+  --text-color: #4A3728;
+  --text-secondary: #8D6E63;
+  --text-light: #BCAAA4;
+  --text-white: #FFFFFF;
+
+  --bg-warm: #FFF8F0;
+  --bg-cream: #FFF3E8;
+  --bg-pink: #FFF0F5;
+  --bg-card: #FFFFFF;
+  --bg-tag: #FFF3E0;
+
+  --border-color: #F0E0D0;
+  --border-light: #FAF0E6;
+
+  --white: #ffffff;
+  --shadow-soft: 0 4rpx 20rpx rgba(255, 138, 101, 0.08);
+  --shadow-card: 0 8rpx 30rpx rgba(255, 138, 101, 0.10);
+  --shadow-float: 0 12rpx 40rpx rgba(255, 138, 101, 0.15);
+  --shadow-pink: 0 4rpx 20rpx rgba(244, 143, 177, 0.15);
+  --shadow-green: 0 4rpx 20rpx rgba(129, 199, 132, 0.15);
+
+  --radius-sm: 12rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 28rpx;
+  --radius-xl: 36rpx;
+  --radius-round: 999rpx;
+}
+
+/* 通用容器 */
+.container {
+  padding: 20rpx 24rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 通用区域卡片 */
+.section {
+  margin-bottom: 24rpx;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 28rpx;
+  box-shadow: var(--shadow-card);
+  border: 2rpx solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 通用按钮 */
+.btn {
+  display: inline-block;
+  padding: 16rpx 32rpx;
+  border-radius: var(--radius-round);
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  box-shadow: 0 4rpx 16rpx rgba(255, 138, 101, 0.3);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary-color);
+  border: 2rpx solid var(--primary-light);
+}
+
+/* 通用输入框 */
+.input {
+  width: 100%;
+  padding: 16rpx 24rpx;
+  border: 2rpx solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+  background-color: var(--bg-warm);
+  color: var(--text-color);
+}
+
+/* 通用列表 */
+.list-item {
+  padding: 24rpx;
+  border-bottom: 1rpx solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* 通用卡片 */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 28rpx;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 20rpx;
+  border: 2rpx solid var(--border-light);
+}
+
+/* 通用图片 */
+.img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+/* 工具类 */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mt-10 { margin-top: 10rpx; }
+.mb-10 { margin-bottom: 10rpx; }
+.mt-20 { margin-top: 20rpx; }
+.mb-20 { margin-bottom: 20rpx; }
+
+/* 加载 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60rpx;
+  color: var(--text-light);
+  font-size: 26rpx;
+}
+
+/* ===== 通用区域标题样式 ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-color);
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, var(--primary-color), var(--accent-pink));
+  border-radius: 4rpx;
+}
+
+.section-more {
+  font-size: 24rpx;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+/* ===== 通用搜索栏样式 ===== */
+.search-bar {
+  margin-bottom: 24rpx;
+}
+
+.search-inner {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-radius: var(--radius-round);
+  padding: 14rpx 24rpx;
+  box-shadow: var(--shadow-soft);
+  border: 2rpx solid var(--border-light);
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+}
+
+.search-btn {
+  padding: 10rpx 28rpx;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  border-radius: var(--radius-round);
+  font-size: 26rpx;
+  font-weight: 600;
+  box-shadow: 0 4rpx 12rpx rgba(255, 138, 101, 0.25);
+}
+
+/* ===== 通用分类标签样式 ===== */
+.category-section,
+.topic-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 18rpx 0;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-soft);
+  border: 2rpx solid var(--border-light);
+}
+
+.category-scroll,
+.topic-scroll {
+  white-space: nowrap;
+}
+
+.category-item,
+.topic-item {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  margin: 0 8rpx;
+  background: var(--bg-tag);
+  border-radius: var(--radius-round);
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.category-item.active,
+.topic-item.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-pink));
+  box-shadow: 0 4rpx 12rpx rgba(255, 138, 101, 0.25);
+}
+
+.category-item.active .category-text,
+.topic-item.active .topic-text {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.category-text,
+.topic-text {
+  font-size: 26rpx;
+  color: inherit;
+}
+
+/* ===== 通用价格样式 ===== */
+.price-symbol {
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.price-value {
+  font-size: 34rpx;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.price-unit {
+  font-size: 22rpx;
+  color: var(--text-light);
+  margin-left: 4rpx;
+}

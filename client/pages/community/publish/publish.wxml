@@ -1,0 +1,40 @@
+<!-- 发布帖子页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">发布动态</text>
+  </view>
+  
+  <view class="publish-container">
+    <!-- 选择话题 -->
+    <view class="form-item">
+      <text class="form-label">选择话题</text>
+      <picker bindchange="bindTopicChange" range="{{topics}}" class="form-picker">
+        <view class="picker-text">{{selectedTopic || '请选择话题'}}</view>
+      </picker>
+    </view>
+    
+    <!-- 内容输入 -->
+    <view class="form-item">
+      <text class="form-label">内容</text>
+      <textarea placeholder="分享你的宠物故事..." class="form-textarea" bindinput="inputContent" />
+    </view>
+    
+    <!-- 图片选择 -->
+    <view class="form-item">
+      <text class="form-label">图片</text>
+      <view class="image-upload">
+        <view class="upload-btn" bindtap="chooseImage" wx:if="{{images.length < 9}}">
+          <text class="upload-icon">+</text>
+          <text class="upload-text">添加图片</text>
+        </view>
+        <view class="image-item" wx:for="{{images}}" wx:key="index">
+          <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
+          <button class="delete-image" bindtap="deleteImage" data-index="{{index}}">删除</button>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 发布按钮 -->
+    <button class="publish-btn" bindtap="publishPost">发布</button>
+  </view>
+</view>

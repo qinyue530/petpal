@@ -1,0 +1,113 @@
+/* 编辑宠物页面样式 */
+.page-header {
+  padding: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--border-color);
+  background-color: var(--white);
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.form-container {
+  padding: 20rpx;
+}
+
+.form-item {
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 12rpx;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+
+.form-picker {
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 4rpx;
+  background-color: var(--white);
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.pet-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.avatar-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+
+.avatar-text {
+  font-size: 24rpx;
+  color: var(--text-light);
+  margin-top: 8rpx;
+}
+
+.gender-selector {
+  display: flex;
+  gap: 20rpx;
+}
+
+.gender-item {
+  flex: 1;
+  padding: 20rpx;
+  border: 2rpx solid var(--border-color);
+  border-radius: 8rpx;
+  text-align: center;
+  background-color: var(--white);
+}
+
+.gender-item.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.gender-item.active .gender-text {
+  color: var(--white);
+}
+
+.gender-text {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 20rpx;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 32rpx;
+}

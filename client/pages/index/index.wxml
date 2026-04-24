@@ -1,0 +1,137 @@
+<!-- 首页 -->
+<view class="container">
+  <!-- 顶部欢迎区 -->
+  <view class="welcome-banner">
+    <view class="welcome-text">
+      <text class="welcome-greeting">🐾 你好呀~</text>
+      <text class="welcome-sub">今天想为毛孩子做点什么？</text>
+    </view>
+    <view class="welcome-paw">🐾</view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-inner">
+      <text class="search-icon">🔍</text>
+      <input type="text" placeholder="搜索宠物服务、商品..." class="search-input" bindinput="inputSearch" value="{{searchKeyword}}" confirm-type="search" bindconfirm="search" />
+      <view class="search-btn" bindtap="search">搜索</view>
+    </view>
+  </view>
+
+  <!-- 搜索结果提示 -->
+  <view class="search-tip" wx:if="{{showSearchResult}}">
+    <text>找到 {{filteredServices.length + filteredProducts.length}} 个结果</text>
+  </view>
+
+  <!-- 功能导航 -->
+  <view class="nav-section" wx:if="{{!showSearchResult}}">
+    <view class="nav-grid">
+      <view class="nav-item" bindtap="navigateToService">
+        <view class="nav-icon nav-icon-service">
+          <image src="/images/nav-service.png" mode="aspectFit" class="nav-icon-img" />
+        </view>
+        <text class="nav-text">宠物服务</text>
+        <text class="nav-desc">美容·医疗</text>
+      </view>
+      <view class="nav-item" bindtap="navigateToMall">
+        <view class="nav-icon nav-icon-mall">
+          <image src="/images/nav-mall.png" mode="aspectFit" class="nav-icon-img" />
+        </view>
+        <text class="nav-text">宠物商城</text>
+        <text class="nav-desc">好物·特惠</text>
+      </view>
+      <view class="nav-item" bindtap="navigateToCommunity">
+        <view class="nav-icon nav-icon-community">
+          <image src="/images/nav-community.png" mode="aspectFit" class="nav-icon-img" />
+        </view>
+        <text class="nav-text">宠物社区</text>
+        <text class="nav-desc">分享·交流</text>
+      </view>
+      <view class="nav-item" bindtap="navigateToTools">
+        <view class="nav-icon nav-icon-tools">
+          <image src="/images/nav-tools.png" mode="aspectFit" class="nav-icon-img" />
+        </view>
+        <text class="nav-text">工具助手</text>
+        <text class="nav-desc">疫苗·计算</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐服务 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">{{showSearchResult ? '搜索结果' : '推荐服务'}}</text>
+      <text class="section-more" bindtap="navigateToService" wx:if="{{!showSearchResult}}">查看更多 ></text>
+    </view>
+    <scroll-view scroll-x="true" class="service-scroll">
+      <view class="service-item" wx:for="{{filteredServices}}" wx:key="id" bindtap="goToServiceDetail" data-index="{{index}}">
+        <view class="service-image-wrap">
+          <image src="{{item.image}}" mode="aspectFill" class="service-image" />
+          <view class="service-tag">HOT</view>
+        </view>
+        <view class="service-info">
+          <text class="service-name">{{item.name}}</text>
+          <view class="service-bottom">
+            <text class="service-price">¥{{item.price}}</text>
+            <text class="service-unit">起</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 热门商品 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">{{showSearchResult ? '搜索结果' : '热门商品'}}</text>
+      <text class="section-more" bindtap="navigateToMall" wx:if="{{!showSearchResult}}">查看更多 ></text>
+    </view>
+    <view class="product-grid">
+      <view class="product-card" wx:for="{{filteredProducts}}" wx:key="id" bindtap="goToProductDetail" data-id="{{item.id}}">
+        <view class="product-image-wrap">
+          <image src="{{item.image}}" mode="aspectFill" class="product-image" />
+        </view>
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <view class="product-bottom">
+            <view class="product-price-wrap">
+              <text class="product-price">¥{{item.price}}</text>
+            </view>
+            <text class="product-sales">已售{{item.sales}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 社区动态 -->
+  <view class="section" wx:if="{{!showSearchResult}}">
+    <view class="section-header">
+      <text class="section-title">社区动态</text>
+      <text class="section-more" bindtap="navigateToCommunity">查看更多 ></text>
+    </view>
+    <view class="community-list">
+      <view class="community-card" wx:for="{{communityPosts}}" wx:key="id">
+        <view class="community-user">
+          <image src="{{item.avatar}}" mode="aspectFill" class="community-avatar" />
+          <view class="community-user-info">
+            <text class="community-username">{{item.username}}</text>
+            <text class="community-time">{{item.time || '刚刚'}}</text>
+          </view>
+        </view>
+        <text class="community-text">{{item.content}}</text>
+        <image src="{{item.image}}" mode="aspectFill" class="community-image" wx:if="{{item.image}}" />
+        <view class="community-stats">
+          <view class="stat-item stat-like">
+            <text class="stat-icon">❤</text>
+            <text class="stat-num">{{item.likes}}</text>
+          </view>
+          <view class="stat-item stat-comment">
+            <text class="stat-icon">💬</text>
+            <text class="stat-num">{{item.comments}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

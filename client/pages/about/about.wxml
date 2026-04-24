@@ -1,0 +1,19 @@
+<!-- 关于我们 -->
+<view class="container">
+  <view class="header">
+    <image src="/images/logo.png" class="logo" mode="aspectFit" />
+    <text class="app-name">宠物伴侣</text>
+    <text class="version">v{{version}}</text>
+  </view>
+  <view class="section">
+    <text class="section-title">功能特色</text>
+    <view class="feature-list">
+      <text class="feature-item" wx:for="{{features}}" wx:key="index">• {{item}}</text>
+    </view>
+  </view>
+  <view class="section">
+    <text class="section-title">联系我们</text>
+    <text class="contact">客服电话：400-123-4567</text>
+    <text class="contact">工作时间：9:00-18:00</text>
+  </view>
+</view>

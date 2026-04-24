@@ -1,0 +1,83 @@
+<!-- 商品详情页 -->
+<view class="container">
+  <!-- 商品图片 -->
+  <view class="product-images" bindtap="previewImage">
+    <image src="{{product.image}}" mode="aspectFill" class="main-image" />
+  </view>
+
+  <!-- 价格信息 -->
+  <view class="price-section">
+    <text class="price-symbol">¥</text>
+    <text class="price-value">{{product.price}}</text>
+    <text class="sales-info">已售 {{product.sales}} 件</text>
+    <view class="favorite-btn" bindtap="toggleFavorite">
+      <text class="favorite-text">{{isFavorited ? '已收藏' : '收藏'}}</text>
+    </view>
+  </view>
+
+  <!-- 商品标题 -->
+  <view class="title-section">
+    <text class="product-title">{{product.name}}</text>
+    <text class="product-category">{{product.category}}</text>
+  </view>
+
+  <!-- 规格选择 -->
+  <view class="section-card">
+    <text class="card-label">规格选择</text>
+    <view class="spec-list">
+      <view class="spec-item {{selectedSpec === index ? 'active' : ''}}"
+            wx:for="{{product.specs}}" wx:key="index"
+            bindtap="selectSpec" data-index="{{index}}">
+        <text>{{item}}</text>
+      </view>
+    </view>
+    <view class="quantity-row">
+      <text class="card-label">数量</text>
+      <view class="quantity-control">
+        <view class="qty-btn" bindtap="decreaseQuantity">-</view>
+        <text class="qty-value">{{quantity}}</text>
+        <view class="qty-btn" bindtap="increaseQuantity">+</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品介绍 -->
+  <view class="section-card">
+    <text class="card-label">商品介绍</text>
+    <text class="product-desc">{{product.desc}}</text>
+  </view>
+
+  <!-- 用户评价 -->
+  <view class="section-card">
+    <view class="card-header">
+      <text class="card-label">用户评价</text>
+      <text class="rating-text">综合评分 {{totalRating}} 分</text>
+    </view>
+    <view class="review-list" wx:if="{{reviews.length > 0}}">
+      <view class="review-item" wx:for="{{reviews}}" wx:key="id">
+        <view class="review-user">
+          <image src="{{item.avatar}}" class="review-avatar" />
+          <view class="review-user-info">
+            <text class="review-username">{{item.username}}</text>
+            <text class="review-rating">{{item.ratingText}}</text>
+          </view>
+          <text class="review-time">{{item.time}}</text>
+        </view>
+        <text class="review-content">{{item.content}}</text>
+      </view>
+    </view>
+    <view class="no-review" wx:else>
+      <text>暂无评价</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bar-cart" bindtap="addToCart">
+      <text>加入购物车</text>
+    </view>
+    <view class="bar-buy" bindtap="buyNow">
+      <text>立即购买</text>
+    </view>
+  </view>
+</view>

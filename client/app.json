@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/service/service",
+    "pages/community/community",
+    "pages/community/publish/publish",
+    "pages/community/comment/comment",
+    "pages/mall/mall",
+    "pages/profile/profile",
+    "pages/tools/tools",
+    "pages/pet-management/pet-management",
+    "pages/pet-management/add-pet/add-pet",
+    "pages/pet-management/edit-pet/edit-pet",
+    "pages/service-booking/service-booking",
+    "pages/cart/cart",
+    "pages/orders/orders",
+    "pages/product-detail/product-detail",
+    "pages/appointments/appointments",
+    "pages/favorites/favorites",
+    "pages/about/about",
+    "pages/feedback/feedback",
+    "pages/settings/settings",
+    "pages/edit-profile/edit-profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF8A65",
+    "navigationBarTitleText": "宠物伴侣",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#BCAAA4",
+    "selectedColor": "#FF8A65",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/service/service",
+        "text": "服务",
+        "iconPath": "images/tab-service.png",
+        "selectedIconPath": "images/tab-service-active.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区",
+        "iconPath": "images/tab-community.png",
+        "selectedIconPath": "images/tab-community-active.png"
+      },
+      {
+        "pagePath": "pages/mall/mall",
+        "text": "商城",
+        "iconPath": "images/tab-mall.png",
+        "selectedIconPath": "images/tab-mall-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

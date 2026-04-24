@@ -1,0 +1,19 @@
+<!-- 设置 -->
+<view class="container">
+  <view class="section">
+    <view class="setting-item" bindtap="editProfile">
+      <text class="setting-text">编辑个人资料</text>
+      <text class="arrow">→</text>
+    </view>
+    <view class="setting-item" bindtap="clearCache">
+      <text class="setting-text">清除缓存</text>
+      <text class="setting-value">{{cacheSize}}</text>
+    </view>
+  </view>
+  <view class="section">
+    <view class="setting-item" bindtap="about">
+      <text class="setting-text">关于我们</text>
+      <text class="arrow">→</text>
+    </view>
+  </view>
+</view>

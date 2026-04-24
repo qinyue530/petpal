@@ -1,0 +1,122 @@
+/* 发布帖子页面样式 */
+.page-header {
+  padding: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid var(--border-color);
+  background-color: var(--white);
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.publish-container {
+  padding: 20rpx;
+}
+
+.form-item {
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 12rpx;
+}
+
+.form-textarea {
+  width: 100%;
+  height: 200rpx;
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  resize: none;
+  background-color: var(--white);
+}
+
+.form-picker {
+  padding: 16rpx;
+  border: 1rpx solid var(--border-color);
+  border-radius: 8rpx;
+  background-color: var(--white);
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.image-upload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.upload-btn {
+  width: 120rpx;
+  height: 120rpx;
+  border: 1rpx dashed var(--border-color);
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+}
+
+.upload-icon {
+  font-size: 48rpx;
+  color: var(--text-light);
+  margin-bottom: 8rpx;
+}
+
+.upload-text {
+  font-size: 20rpx;
+  color: var(--text-light);
+}
+
+.image-item {
+  position: relative;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+}
+
+.delete-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32rpx;
+  height: 32rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  border: none;
+  border-radius: 0 8rpx 0 8rpx;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.publish-btn {
+  width: 100%;
+  padding: 20rpx;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 32rpx;
+}

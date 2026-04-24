@@ -1,0 +1,47 @@
+<!-- 订单页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">我的订单</text>
+  </view>
+  
+  <!-- 订单为空 -->
+  <view class="empty-orders" wx:if="{{orders.length === 0}}">
+    <text class="empty-text">暂无订单</text>
+    <button class="go-shopping-btn" bindtap="goShopping">去购物</button>
+  </view>
+  
+  <!-- 订单列表 -->
+  <view class="orders-list" wx:else>
+    <view class="order-card" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header">
+        <text class="order-id">订单号：{{item.id}}</text>
+        <text class="order-status status-{{item.statusClass}}">{{item.status}}</text>
+      </view>
+      <view class="order-products">
+        <view class="product-row" wx:for="{{item.items}}" wx:key="id" wx:for-item="product">
+          <image src="{{product.image || '/images/product-dogfood.jpg'}}" mode="aspectFill" class="product-image" />
+          <view class="product-info">
+            <text class="product-name">{{product.name}}</text>
+            <text class="product-spec" wx:if="{{product.spec}}">{{product.spec}}</text>
+            <view class="product-price-row">
+              <text class="product-price">¥{{product.price}}</text>
+              <text class="product-quantity">x{{product.quantity}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="order-footer">
+        <view class="order-total-row">
+          <text class="order-total-label">合计：</text>
+          <text class="order-total-price">¥{{item.totalPrice}}</text>
+        </view>
+        <view class="order-actions">
+          <button class="action-btn cancel" bindtap="cancelOrder" data-index="{{index}}" wx:if="{{item.status === '待付款'}}">取消订单</button>
+          <button class="action-btn primary" bindtap="payOrder" data-index="{{index}}" wx:if="{{item.status === '待付款'}}">付款</button>
+          <text class="order-tip" wx:if="{{item.status === '已付款'}}">感谢您的购买</text>
+          <text class="order-tip" wx:if="{{item.status === '已取消'}}">订单已取消</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

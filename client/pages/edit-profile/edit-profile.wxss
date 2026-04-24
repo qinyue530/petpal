@@ -1,0 +1,17 @@
+.container { padding: 20rpx; }
+
+/* 头像区域 */
+.avatar-section { display: flex; justify-content: center; padding: 40rpx 0; }
+.avatar-wrapper { position: relative; width: 160rpx; height: 160rpx; }
+.avatar-img { width: 160rpx; height: 160rpx; border-radius: 50%; border: 4rpx solid #4CAF50; }
+.avatar-mask { position: absolute; bottom: 0; left: 0; right: 0; height: 50rpx; background: rgba(0,0,0,0.5); border-radius: 0 0 80rpx 80rpx; display: flex; align-items: center; justify-content: center; }
+.avatar-tip { font-size: 20rpx; color: #fff; }
+
+/* 表单 */
+.form-item { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.form-label { font-size: 28rpx; font-weight: 600; color: #333; display: block; margin-bottom: 12rpx; }
+.form-input { width: 100%; padding: 16rpx; border: 1rpx solid #e0e0e0; border-radius: 8rpx; font-size: 28rpx; }
+.form-textarea { width: 100%; height: 160rpx; padding: 16rpx; border: 1rpx solid #e0e0e0; border-radius: 8rpx; font-size: 28rpx; }
+
+/* 保存按钮 */
+.save-btn { margin-top: 40rpx; background: #4CAF50; color: #fff; border: none; border-radius: 8rpx; font-size: 32rpx; }

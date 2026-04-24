@@ -1,0 +1,18 @@
+<!-- 我的预约 -->
+<view class="container">
+  <view class="empty" wx:if="{{bookings.length === 0}}">
+    <text class="empty-text">暂无预约记录</text>
+    <button class="go-btn" bindtap="goBooking">去预约服务</button>
+  </view>
+  <view class="booking-list" wx:else>
+    <view class="booking-item" wx:for="{{bookings}}" wx:key="id">
+      <view class="booking-info">
+        <text class="booking-name">{{item.serviceName}}</text>
+        <text class="booking-pet">宠物：{{item.petName}}</text>
+        <text class="booking-time">时间：{{item.date}} {{item.time}}</text>
+        <text class="booking-status status-{{item.statusClass}}">{{item.status}}</text>
+      </view>
+      <button class="cancel-btn" bindtap="cancelBooking" data-index="{{index}}" wx:if="{{item.status === '待确认'}}">取消</button>
+    </view>
+  </view>
+</view>

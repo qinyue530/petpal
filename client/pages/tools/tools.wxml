@@ -1,0 +1,120 @@
+<!-- 工具助手页面 -->
+<view class="container">
+  <!-- 工具分类 -->
+  <view class="tool-grid">
+    <view class="tool-item" bindtap="showCalculator">
+      <view class="tool-icon-box" style="background: linear-gradient(135deg, #4CAF50, #81C784);">
+        <text class="tool-icon-text">🔢</text>
+      </view>
+      <view class="tool-name">宠物计算器</view>
+    </view>
+    <view class="tool-item" bindtap="showTraining">
+      <view class="tool-icon-box" style="background: linear-gradient(135deg, #FF9800, #FFB74D);">
+        <text class="tool-icon-text">🎓</text>
+      </view>
+      <view class="tool-name">训练教程</view>
+    </view>
+    <view class="tool-item" bindtap="showHealth">
+      <view class="tool-icon-box" style="background: linear-gradient(135deg, #E91E63, #F48FB1);">
+        <text class="tool-icon-text">🏥</text>
+      </view>
+      <view class="tool-name">健康自查</view>
+    </view>
+    <view class="tool-item" bindtap="showVaccine">
+      <view class="tool-icon-box" style="background: linear-gradient(135deg, #2196F3, #64B5F6);">
+        <text class="tool-icon-text">💉</text>
+      </view>
+      <view class="tool-name">疫苗提醒</view>
+    </view>
+  </view>
+
+  <!-- 计算器工具 -->
+  <view class="section" wx:if="{{activeTool === 'calculator'}}">
+    <view class="section-header"><text class="section-title">宠物计算器</text></view>
+    <view class="calculator-content">
+      <view class="calculator-item">
+        <text class="calculator-label">宠物年龄</text>
+        <input type="number" placeholder="请输入宠物年龄" class="calculator-input" bindinput="inputPetAge" value="{{petAge}}" />
+      </view>
+      <view class="calculator-item">
+        <text class="calculator-label">宠物类型</text>
+        <picker bindchange="bindPickerChange" range="{{petTypes}}">
+          <view class="calculator-picker">{{petTypes[petTypeIndex]}}</view>
+        </picker>
+      </view>
+      <button class="calculate-btn" bindtap="calculateAge">计算人类年龄</button>
+      <view class="result" wx:if="{{result}}">
+        <text class="result-label">人类年龄：</text>
+        <text class="result-value">{{result}}岁</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 训练教程工具 -->
+  <view class="section" wx:if="{{activeTool === 'training'}}">
+    <view class="section-header"><text class="section-title">训练教程</text></view>
+    <view class="training-content">
+      <view class="training-item" wx:for="{{trainingCourses}}" wx:key="index">
+        <text class="training-title">{{item.title}}</text>
+        <text class="training-desc">{{item.description}}</text>
+        <button class="training-btn" bindtap="viewCourse" data-index="{{index}}">查看教程</button>
+      </view>
+    </view>
+    <!-- 教程详情弹窗 -->
+    <view class="modal" wx:if="{{showCourseDetail}}" bindtap="closeCourseDetail">
+      <view class="modal-content" catchtap="">
+        <text class="modal-title">{{currentCourse.title}}</text>
+        <text class="modal-desc">{{currentCourse.description}}</text>
+        <view class="steps">
+          <text class="steps-title">训练步骤：</text>
+          <text class="step" wx:for="{{currentCourse.steps}}" wx:key="index" wx:for-item="step">{{index + 1}}. {{step}}</text>
+        </view>
+        <button class="modal-btn" bindtap="closeCourseDetail">关闭</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 健康自查工具 -->
+  <view class="section" wx:if="{{activeTool === 'health'}}">
+    <view class="section-header"><text class="section-title">健康自查</text></view>
+    <view class="health-content">
+      <view class="health-item" wx:for="{{healthSymptoms}}" wx:key="index">
+        <text class="health-symptom">{{item.symptom}}</text>
+        <button class="health-btn" bindtap="checkSymptom" data-index="{{index}}">自查</button>
+      </view>
+    </view>
+    <!-- 症状结果弹窗 -->
+    <view class="modal" wx:if="{{showSymptomResult}}" bindtap="closeSymptomResult">
+      <view class="modal-content" catchtap="">
+        <text class="modal-title">症状：{{currentSymptom.symptom}}</text>
+        <text class="modal-advice">{{currentSymptom.advice}}</text>
+        <button class="modal-btn" bindtap="closeSymptomResult">关闭</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 疫苗提醒工具 -->
+  <view class="section" wx:if="{{activeTool === 'vaccine'}}">
+    <view class="section-header"><text class="section-title">疫苗提醒</text></view>
+    <view class="vaccine-content">
+      <view class="vaccine-item" wx:for="{{vaccines}}" wx:key="index">
+        <view class="vaccine-info">
+          <text class="vaccine-name">{{item.name}}</text>
+          <text class="vaccine-date">{{item.date}}</text>
+        </view>
+        <view class="vaccine-actions">
+          <text class="vaccine-status status-{{item.status === '已接种' ? 'done' : 'pending'}}">{{item.status}}</text>
+          <text class="vaccine-action" bindtap="completeVaccine" data-index="{{index}}" wx:if="{{item.status === '待接种'}}">&#10003;</text>
+          <text class="vaccine-action delete" bindtap="deleteVaccine" data-index="{{index}}">&#10005;</text>
+        </view>
+      </view>
+      <view class="add-vaccine-form">
+        <input class="vaccine-input" placeholder="疫苗名称" bindinput="inputVaccineName" value="{{newVaccineName}}" />
+        <picker mode="date" bindchange="inputVaccineDate" value="{{newVaccineDate}}">
+          <view class="date-picker">{{newVaccineDate || '选择日期'}}</view>
+        </picker>
+        <button class="add-vaccine-btn" bindtap="addVaccine">添加</button>
+      </view>
+    </view>
+  </view>
+</view>

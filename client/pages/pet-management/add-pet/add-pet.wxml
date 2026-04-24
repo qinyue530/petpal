@@ -1,0 +1,59 @@
+<!-- 添加宠物页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">添加宠物</text>
+  </view>
+  
+  <view class="form-container">
+    <!-- 宠物照片 -->
+    <view class="form-item">
+      <text class="form-label">宠物照片</text>
+      <view class="pet-avatar" bindtap="chooseImage">
+        <image src="{{petImage || '/images/user-avatar.png'}}" mode="aspectFill" class="avatar-img" />
+        <text class="avatar-text">{{petImage ? '更换照片' : '选择照片'}}</text>
+      </view>
+    </view>
+    
+    <!-- 宠物名称 -->
+    <view class="form-item">
+      <text class="form-label">宠物名称</text>
+      <input type="text" placeholder="请输入宠物名称" class="form-input" bindinput="inputName" />
+    </view>
+    
+    <!-- 宠物类型 -->
+    <view class="form-item">
+      <text class="form-label">宠物类型</text>
+      <picker bindchange="bindTypeChange" range="{{petTypes}}" class="form-picker">
+        <view class="picker-text">{{petTypes[petTypeIndex]}}</view>
+      </picker>
+    </view>
+    
+    <!-- 宠物品种 -->
+    <view class="form-item">
+      <text class="form-label">宠物品种</text>
+      <input type="text" placeholder="请输入宠物品种" class="form-input" bindinput="inputBreed" />
+    </view>
+    
+    <!-- 宠物年龄 -->
+    <view class="form-item">
+      <text class="form-label">宠物年龄</text>
+      <input type="number" placeholder="请输入宠物年龄" class="form-input" bindinput="inputAge" />
+    </view>
+    
+    <!-- 宠物性别 -->
+    <view class="form-item">
+      <text class="form-label">宠物性别</text>
+      <view class="gender-selector">
+        <view class="gender-item {{gender === 'male' ? 'active' : ''}}" bindtap="selectMale">
+          <text class="gender-text">公</text>
+        </view>
+        <view class="gender-item {{gender === 'female' ? 'active' : ''}}" bindtap="selectFemale">
+          <text class="gender-text">母</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 保存按钮 -->
+    <button class="save-btn" bindtap="savePet">保存</button>
+  </view>
+</view>

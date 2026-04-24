@@ -1,0 +1,70 @@
+<!-- 服务页面 -->
+<view class="container">
+  <!-- 页面标题区 -->
+  <view class="page-header">
+    <text class="page-title">🐾 宠物服务</text>
+    <text class="page-subtitle">为毛孩子找到最好的服务</text>
+  </view>
+
+  <!-- 服务分类 -->
+  <view class="category-section">
+    <scroll-view scroll-x="true" class="category-scroll">
+      <view class="category-item {{selectedCategory === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="index" bindtap="selectCategory" data-index="{{index}}">
+        <text class="category-text">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 附近商家 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">附近商家</text>
+      <view class="section-more" bindtap="viewMoreMerchants">
+        <text class="more-text">查看更多</text>
+        <text class="more-arrow">›</text>
+      </view>
+    </view>
+    <view class="merchant-list">
+      <view class="merchant-item" wx:for="{{merchants}}" wx:key="index">
+        <view class="merchant-image-wrap">
+          <image src="{{item.image}}" mode="aspectFill" class="merchant-image" />
+        </view>
+        <view class="merchant-info">
+          <text class="merchant-name">{{item.name}}</text>
+          <view class="merchant-rating-row">
+            <text class="merchant-rating">⭐ {{item.rating}}</text>
+            <text class="merchant-distance">{{item.distance}}m</text>
+          </view>
+          <text class="merchant-address">{{item.address}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务列表 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">热门服务</text>
+      <view class="section-more" bindtap="viewMoreServices">
+        <text class="more-text">查看更多</text>
+        <text class="more-arrow">›</text>
+      </view>
+    </view>
+    <view class="service-list">
+      <view class="service-item" wx:for="{{filteredServices}}" wx:key="index">
+        <view class="service-image-wrap">
+          <image src="{{item.image}}" mode="aspectFill" class="service-image" />
+        </view>
+        <view class="service-info">
+          <text class="service-name">{{item.name}}</text>
+          <view class="service-price-row">
+            <text class="service-price">¥{{item.price}}</text>
+            <text class="service-price-unit">起</text>
+          </view>
+          <text class="service-description">{{item.description}}</text>
+          <button class="service-btn" bindtap="bookService" data-index="{{index}}">立即预约</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

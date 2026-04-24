@@ -1,0 +1,12 @@
+<!-- 意见反馈 -->
+<view class="container">
+  <view class="section">
+    <text class="label">反馈内容</text>
+    <textarea class="textarea" placeholder="请输入您的意见或建议" bindinput="inputContent" value="{{content}}" />
+  </view>
+  <view class="section">
+    <text class="label">联系方式（选填）</text>
+    <input class="input" placeholder="手机号或邮箱" bindinput="inputContact" value="{{contact}}" />
+  </view>
+  <button class="submit-btn" bindtap="submit">提交反馈</button>
+</view>

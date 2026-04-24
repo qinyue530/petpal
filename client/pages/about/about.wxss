@@ -1,0 +1,9 @@
+.container { padding: 20rpx; }
+.header { text-align: center; padding: 40rpx 0; background: #fff; border-radius: 12rpx; margin-bottom: 20rpx; }
+.logo { width: 120rpx; height: 120rpx; }
+.app-name { display: block; font-size: 36rpx; font-weight: bold; margin-top: 16rpx; }
+.version { display: block; font-size: 24rpx; color: #999; margin-top: 8rpx; }
+.section { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.section-title { font-size: 30rpx; font-weight: bold; display: block; margin-bottom: 16rpx; }
+.feature-item { display: block; font-size: 28rpx; color: #666; line-height: 2; }
+.contact { display: block; font-size: 28rpx; color: #666; line-height: 2; }

@@ -1,0 +1,57 @@
+<!-- 服务预约页面 -->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">服务预约</text>
+  </view>
+  
+  <view class="booking-container">
+    <!-- 服务信息 -->
+    <view class="service-info">
+      <image src="{{service.image || '/images/service-grooming.jpg'}}" mode="aspectFill" class="service-image" />
+      <view class="service-details">
+        <text class="service-name">{{service.name}}</text>
+        <text class="service-price">¥{{service.price}}</text>
+        <text class="service-description">{{service.description}}</text>
+      </view>
+    </view>
+    
+    <!-- 选择宠物 -->
+    <view class="form-item">
+      <text class="form-label">选择宠物</text>
+      <picker bindchange="bindPetChange" range="{{petNames}}" class="form-picker">
+        <view class="picker-text">{{selectedPet || '请选择宠物'}}</view>
+      </picker>
+    </view>
+    
+    <!-- 选择日期 -->
+    <view class="form-item">
+      <text class="form-label">预约日期</text>
+      <picker mode="date" bindchange="bindDateChange" class="form-picker">
+        <view class="picker-text">{{selectedDate || '请选择日期'}}</view>
+      </picker>
+    </view>
+    
+    <!-- 选择时间 -->
+    <view class="form-item">
+      <text class="form-label">预约时间</text>
+      <picker mode="time" bindchange="bindTimeChange" class="form-picker">
+        <view class="picker-text">{{selectedTime || '请选择时间'}}</view>
+      </picker>
+    </view>
+    
+    <!-- 备注信息 -->
+    <view class="form-item">
+      <text class="form-label">备注信息</text>
+      <textarea placeholder="请输入备注信息" class="form-textarea" bindinput="inputRemark" />
+    </view>
+    
+    <!-- 联系信息 -->
+    <view class="form-item">
+      <text class="form-label">联系电话</text>
+      <input type="number" placeholder="请输入联系电话" class="form-input" bindinput="inputPhone" />
+    </view>
+    
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="submitBooking">提交预约</button>
+  </view>
+</view>
