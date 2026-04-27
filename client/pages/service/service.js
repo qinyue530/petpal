@@ -31,9 +31,15 @@ Page({
       api.request({ url: '/merchants' })
     ])
     .then(([services, merchants]) => {
+      // 为商家数据添加distance字段（后端未返回）
+      const processedMerchants = (merchants || []).map(merchant => ({
+        ...merchant,
+        distance: Math.floor(Math.random() * 1000) // 随机生成距离
+      }));
+      
       this.setData({
         services: services || [],
-        merchants: merchants || [],
+        merchants: processedMerchants,
         filteredServices: services || [],
         loading: false
       });

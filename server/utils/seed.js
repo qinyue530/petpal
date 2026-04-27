@@ -37,9 +37,9 @@ async function seed() {
 
   // 商家
   const merchants = [
-    { id: 1, name: '宠物乐园', description: '专业宠物美容与寄养服务', address: '幸福路88号', phone: '13800001111', rating: 4.8 },
-    { id: 2, name: '宠物之家', description: '温馨宠物寄养与训练中心', address: '阳光大道66号', phone: '13800002222', rating: 4.6 },
-    { id: 3, name: '宠物医院', description: '专业宠物医疗机构', address: '健康路99号', phone: '13800003333', rating: 4.9 },
+    { id: 1, name: '宠物乐园', description: '专业宠物美容与寄养服务', address: '幸福路88号', phone: '13800001111', rating: 4.8, image: '/images/merchant-petpark.jpg' },
+    { id: 2, name: '宠物之家', description: '温馨宠物寄养与训练中心', address: '阳光大道66号', phone: '13800002222', rating: 4.6, image: '/images/merchant-pethome.jpg' },
+    { id: 3, name: '宠物医院', description: '专业宠物医疗机构', address: '健康路99号', phone: '13800003333', rating: 4.9, image: '/images/merchant-pethospital.jpg' },
   ];
 
   // 服务
@@ -82,16 +82,22 @@ async function seed() {
   ];
 
   // 修正商品图片路径
-  const updatedProducts = products.map(product => ({
-    ...product,
-    image: `/images/product-${product.name.toLowerCase().replace(/\s+/g, '-')}.jpg`
-  }));
+  const updatedProducts = [
+    { ...products[0], image: '/images/product-dogfood.jpg' },
+    { ...products[1], image: '/images/product-toy.jpg' },
+    { ...products[2], image: '/images/product-snack.jpg' },
+    { ...products[3], image: '/images/product-supplies.jpg' },
+    { ...products[4], image: '/images/product-catlitter.jpg' },
+    { ...products[5], image: '/images/product-leash.jpg' }
+  ];
 
   // 修正服务图片路径
-  const updatedServices = services.map(service => ({
-    ...service,
-    image: `/images/service-${service.name.toLowerCase().replace(/\s+/g, '-')}.jpg`
-  }));
+  const updatedServices = [
+    { ...services[0], image: '/images/service-grooming.jpg' },
+    { ...services[1], image: '/images/service-boarding.jpg' },
+    { ...services[2], image: '/images/service-medical.jpg' },
+    { ...services[3], image: '/images/service-training.jpg' }
+  ];
 
   // 使用force: true强制重新创建表结构，以更新字段名
   await sequelize.sync({ force: true });

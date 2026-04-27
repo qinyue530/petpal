@@ -5,17 +5,29 @@ const api = {
   
   request(options) {
     return new Promise((resolve, reject) => {
+      const token = wx.getStorageSync('token');
+      const header = {
+        'Content-Type': 'application/json'
+      };
+      
+      // 只在有token时才添加Authorization头
+      if (token) {
+        header['Authorization'] = 'Bearer ' + token;
+      }
+      
       wx.request({
         url: this.baseUrl + options.url,
         method: options.method || 'GET',
         data: options.data,
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + wx.getStorageSync('token')
-        },
+        header: header,
         success: (res) => {
           if (res.data.code === 200) {
-            resolve(res.data.data);
+            // 检查返回数据是否包含list字段
+            if (res.data.data && res.data.data.list) {
+              resolve(res.data.data.list);
+            } else {
+              resolve(res.data.data);
+            }
           } else {
             reject(res.data.message);
           }
